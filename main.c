@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:48:47 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/28 12:14:13 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/09/28 15:15:32 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int		main(int argc, char **argv)
 	{
 		if (!(map = make_map(map_size)))
 			return (1); //1 will refer to a memory allocation failure
-	
+		solution_found = loop_through_candidates(map, map_size, start_piece);
+		map_size++;
 	}
+	//print solution here
 }
