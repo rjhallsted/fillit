@@ -6,35 +6,35 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/30 17:42:00 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/01 14:56:22 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//need to write duplicate_list, free_list
+//need to write list_swap
 
 #include "libft.h"
 #include "fillit.h"
 
 int		loop_through_candidates(char **map, size_t map_size, t_list *piece)
 {
-	t_list	*start;
 	int 	i;
 	int		list_len;
 	int		found;
 
-	start = duplicate_list(piece);
 	i = 0;
 	list_len = ft_lstlen(piece);
 	found = 0;
 	while (i < list_len && !found;)
 	{	
-		start = list_swap(start, 0, i);
-		found = consider_candidate(map, map_size, start);
+		piece = list_swap(start, 0, i);
+		found = consider_candidate(map, map_size, piece);
 		if (!found)
-			remove_piece(map, map_size, start);
-		i++;
+		{
+			remove_piece(map, map_size, piece);
+			piece = list_swap(piece, 0, i);
+			i++;
+		}
 	}
-	free_list(start);
 	return (found);
 }
 
