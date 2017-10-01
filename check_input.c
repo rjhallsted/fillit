@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 12:27:37 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/01 13:18:37 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/01 14:50:50 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ unsigned int     check_input(char *tetriminos)
     i = 0;
     c = 0;
     if (!tetriminos[i])
-        return(crash_report("Empty File\n"));
+        return (0);
     while (tetriminos[i])
     {
         if (tetriminos[i] == '#' || tetriminos[i] == '.')
@@ -35,10 +35,10 @@ unsigned int     check_input(char *tetriminos)
         else if (tetriminos[i] == '\n' && c == 0 && ct == 4)
             ct = 0;
         else
-            return(crash_report("Incorrect Square Size\n"));
+            return (0);
         i++;
         if (tetriminos[i] == '\0' && ct != 4)
-            return(crash_report("Input File Does Not End Correctly\n"));
+            return (0);
     }
     return (1);
 }

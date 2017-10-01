@@ -6,10 +6,12 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:56:21 by sjuery            #+#    #+#             */
-/*   Updated: 2017/09/29 11:47:52 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/01 14:51:27 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
+#include "libft.h"
 #include "fillit.h"
 
 char    *read_input(const char *file)
