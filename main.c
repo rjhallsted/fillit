@@ -1,68 +1,89 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpolyans <fpolyans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/17 16:29:32 by fpolyans          #+#    #+#             */
-/*   Updated: 2017/09/28 12:06:58 by sjuery           ###   ########.fr       */
+/*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
+/*   Updated: 2017/10/01 14:43:26 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bsq_header.h"
+#include <stdlib.h>
+#include "libft.h"
+#include "fillit.h"
 
-void read_first_file(int *arg_fd, char **file_name, int *ret, int *byte_counter, int *first_newline)
+char	**make_map(size_t map_size)
 {
-	int		first;
-	int		i;
+	char **map;
+	int i;	
 
+	if (!(map = ft_memalloc(sizeof(char *) * map_size)))
+		return (NULL);
 	i = 0;
-	first = 1;
-	g_buf = (char*)malloc(sizeof(char) * 1);
-	*arg_fd = open(*file_name, O_RDWR);
-	g_fd = open("buffer.txt", O_RDWR);
-	while((*ret = read(*arg_fd, g_buf, 1)))
+	while (i < map_size)
 	{
-		*byte_counter += ft_strlen(g_buf);
-		write(g_fd, g_buf, 1);
-		if(g_buf[0] == '\n' && first == 1)
+		if (!(map[i] = ft_strnew(map_size)))
 		{
-			*first_newline = *byte_counter;
-			first = 0;
+			ft_free_2d_array(map, i);
+			return (NULL);
 		}
+		i++;
 	}
-	g_buf[*ret] = '\0';
-	close(g_fd);
+	return (map);
 }
 
-int		main(int ac, char **av)
+void	print_map(char **map, size_t map_size)
 {
-	int		i;
-	int		arg_fd;
-	int		ret;
-	int		byte_counter;
-	int		first_newline;
+	size_t i;
 
-	i = 1;
-	byte_counter = 0;
-	if (ac > 1)
+	i = 0;
+	while (i < map_size)
 	{
-		/* read from arguments, in a loop */
-		while (av[i])
-		{
-			read_first_file(&arg_fd, &av[i], &ret, &byte_counter, &first_newline);
-			/* write map to a string */
-			parse_map_to_str(av[i], byte_counter, first_newline);
-			ft_putstr(g_buf);
-			/* error handling, validify map */
-			if (validate_map())
-			{
-				ft_putstr("map error\n");
-				return (0);
-			}
-			i++;
-		}
+		ft_putstr(map[i]);
+		ft_putchar('\n');
+		i++;
 	}
-	return (1);
+}
+
+void	free_map(char ***map, size_t map_size)
+{
+	size_t i;
+
+	i = 0;
+	while (i < map_size)
+		free(*map[i++]);
+	free(*map);
+	*map = NULL;
+}
+
+int		main(int argc, char **argv)
+{
+	char	*input;
+	t_list *start_piece;
+	char 	**map;
+	size_t	map_size;
+	int		solution_found;
+
+    if(argc == 2)
+    {
+        input = read_input(argv[1]);
+        if(!check_input(input))
+			ft_putstr("Error\n");
+		solution_found = 0;
+		map_size = 1;
+		while (!solution_found)
+		{
+			map_size++;
+			if (!(map = make_map(map_size)))
+				return (1); //1 will refer to a memory allocation failure
+			solution_found = loop_through_candidates(map, map_size, start_piece);
+		}
+		print_map(map, map_size);
+		free_map(map, map_size);
+	}
+	else
+		ft_putstr("Error\n");
+	return (0);
 }
