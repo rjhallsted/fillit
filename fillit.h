@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
+/*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/30 18:08:08 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/01 14:31:51 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
-
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
 # include <string.h>
 
 typedef struct		s_coords
@@ -43,5 +46,10 @@ t_list				*duplicate_list(t_list *item);
 char				**make_map(size_t map_size);
 void				print_map(char **map, size_t map_size);
 void				free_map(char **map, size_t map_size);
+
+char    			*read_input(const char *file);
+unsigned int        check_input(char *tetriminos);
+
+int                 crash_report(char *error_type);
 
 #endif
