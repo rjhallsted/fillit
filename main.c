@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run.c                                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
+/*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/01 14:43:26 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/01 16:01:13 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 char	**make_map(size_t map_size)
 {
 	char **map;
-	int i;	
+	int i;
 
 	if (!(map = ft_memalloc(sizeof(char *) * map_size)))
 		return (NULL);
@@ -71,6 +71,7 @@ int		main(int argc, char **argv)
         input = read_input(argv[1]);
         if(!check_input(input))
 			ft_putstr("Error\n");
+		tetriminos_split(input);
 		solution_found = 0;
 		map_size = 1;
 		while (!solution_found)
