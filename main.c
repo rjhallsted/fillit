@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/01 16:01:13 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/01 16:53:19 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	free_map(char ***map, size_t map_size)
 int		main(int argc, char **argv)
 {
 	char	*input;
-	t_list *start_piece;
+	t_list	*start_piece;
 	char 	**map;
 	size_t	map_size;
 	int		solution_found;
@@ -71,7 +71,7 @@ int		main(int argc, char **argv)
         input = read_input(argv[1]);
         if(!check_input(input))
 			ft_putstr("Error\n");
-		tetriminos_split(input);
+
 		solution_found = 0;
 		map_size = 1;
 		while (!solution_found)
