@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/01 17:08:49 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/01 18:27:34 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char **tetriminos_split(char *tetriminos)
 {
-    char split_tetriminos[24][21];
+    char **split_tetriminos;
     int i;
     int s;
     int c;
@@ -22,17 +22,18 @@ char **tetriminos_split(char *tetriminos)
     i = 0;
     s = 0;
     c = 0;
+    split_tetriminos = malloc(sizeof(char *) * 572);
     while(tetriminos[i])
     {
-        if(i == 20 || i == (20 + (21 * s)))
+        if(c == 21 || c == (21 + (21 * s)))
         {
             s++;
             c = 0;
-            i++;
         }
+        split_tetriminos[s] = malloc(sizeof(tetriminos));
         split_tetriminos[s][c] = tetriminos[i];
         c++;
         i++;
     }
-    return(**split_tetriminos);
+    return(split_tetriminos);
 }

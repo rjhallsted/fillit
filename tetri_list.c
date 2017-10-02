@@ -6,35 +6,14 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 15:33:01 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/01 15:41:57 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/01 18:45:32 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const **shape, s_coords dimensions)
+void	ft_lstadd(t_list **alst, t_list *piece)
 {
-	t_list *nlink;
-
-	nlink = (s_coords*)malloc(sizeof(s_coords));
-	if (!nlink)
-		return (NULL);
-	if (!*shape)
-	{
-		nlink->shape = NULL;
-		nlink->dimensions = (0, 0);
-	}
-	else
-	{
-		nlink->shape = malloc(*shape);
-		if (!*shape)
-		{
-			free(nlink);
-			return (NULL);
-		}
-		ft_memcpy(nlink->shape, *shape, dimensions);
-		nlink->dimensions = dimensions;
-	}
-	nlink->next = NULL;
-	return (nlink);
+	piece->next = (*alst);
+	*alst = piece;
 }
