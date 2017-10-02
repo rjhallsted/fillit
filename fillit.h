@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/01 14:52:06 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/02 11:30:45 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ typedef struct		s_coords
 
 typedef struct		s_list
 {
-	char			**shape;
+	char			*shape;
 	char			id;
-	t_coords		*dimensions;
+	t_coords		*dim;
 	struct s_list	*next;
 }					t_list;
 
@@ -36,8 +36,9 @@ void				remove_piece(char **map, size_t map_size, t_list *piece);
 t_coords			*find_first_placement(char **map, size_t map_size, t_list *piece);
 int					can_place_here(char **map, size_t map_size, t_list *piece, t_coords *coords);
 
-t_list				*copy_list_item(t_list *item);
-t_list				*duplicate_list(t_list *item);
+t_list				*new_item(char *shape, char id);
+void				free_item(t_list **item);
+void				free_list(t_list **item);
 
 char				**make_map(size_t map_size);
 void				print_map(char **map, size_t map_size);

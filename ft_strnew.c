@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tetri_list.c                                       :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/01 15:33:01 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/01 18:45:32 by sjuery           ###   ########.fr       */
+/*   Created: 2017/09/19 16:27:34 by rhallste          #+#    #+#             */
+/*   Updated: 2017/09/21 11:35:19 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *piece)
+char	*ft_strnew(size_t size)
 {
-	piece->next = (*alst);
-	*alst = piece;
+	return ((char *)ft_memalloc(size + 1));
 }

@@ -6,11 +6,9 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/01 14:56:22 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/02 11:41:06 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//need to write list_swap
 
 #include "libft.h"
 #include "fillit.h"
@@ -26,12 +24,12 @@ int		loop_through_candidates(char **map, size_t map_size, t_list *piece)
 	found = 0;
 	while (i < list_len && !found;)
 	{	
-		piece = list_swap(start, 0, i);
+		piece = ft_lst_swap(start, 0, i);
 		found = consider_candidate(map, map_size, piece);
 		if (!found)
 		{
 			remove_piece(map, map_size, piece);
-			piece = list_swap(piece, 0, i);
+			piece = ft_lst_swap(piece, 0, i);
 			i++;
 		}
 	}
@@ -66,11 +64,11 @@ void	set_piece(char **map, size_t map_size, t_list *piece, t_coords *coords)
 
 	x = 0;
 	y = 0;
-	while (y < piece->dimensions->y)
+	while (y < piece->dim->y)
 	{
-		while (x < piece->dimensions->x)
+		while (x < piece->dim->x)
 		{
-			if (piece->shape[y][x] == '#')
+			if (piece->shape[(y * piece->dim->x) + 1 + x] == '#')
 				map[coords->y + y][coords->x + x] = piece->id;
 			x++;
 		}
@@ -118,11 +116,11 @@ int		can_place_here(char **map, size_t map_size, t_list *piece, t_coords *coords
 
 	y = 0;
 	x = 0;
-	while (y < piece->dimensions->y)
+	while (y < piece->dim->y)
 	{
-		while (x < piece->dimensions->x)
+		while (x < piece->dim->x)
 		{
-			if (map[coords->y + y][coords->x + x] != '.' && piece->shape[y][x] == '#')
+			if (map[coords->y + y][coords->x + x] != '.' && piece->shape[(y * piece->dim->x) + 1 + x] == '#'))
 				return (0);
 			x++;
 		}
