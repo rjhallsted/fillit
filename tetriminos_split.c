@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/01 18:27:34 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/02 11:12:45 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ char **tetriminos_split(char *tetriminos)
             s++;
             c = 0;
         }
+        while(tetriminos[i] == ".")
+            i++;
         split_tetriminos[s] = malloc(sizeof(tetriminos));
         split_tetriminos[s][c] = tetriminos[i];
+        printf("%d", split_tetriminos[s][c]);
         c++;
         i++;
     }
