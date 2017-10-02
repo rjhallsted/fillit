@@ -6,9 +6,11 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/02 11:12:45 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/02 14:55:26 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "fillit.h"
 
 #include "fillit.h"
 
@@ -25,17 +27,17 @@ char **tetriminos_split(char *tetriminos)
     split_tetriminos = malloc(sizeof(char *) * 572);
     while(tetriminos[i])
     {
-        if(c == 21 || c == (21 + (21 * s)))
+        if(c >= 4)
         {
             s++;
             c = 0;
         }
-        while(tetriminos[i] == ".")
+        if (tetriminos[i] == '.' && tetriminos[i+1] == '#')
             i++;
+        if (tetriminos[i] == '.' && tetriminos[i+1] == '.' && tetriminos[i+2] == '.' && tetriminos[i+3] == '.')
+            i += 4;
         split_tetriminos[s] = malloc(sizeof(tetriminos));
         split_tetriminos[s][c] = tetriminos[i];
-        printf("%d", split_tetriminos[s][c]);
-        c++;
         i++;
     }
     return(split_tetriminos);
