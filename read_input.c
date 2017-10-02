@@ -6,11 +6,12 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:56:21 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/01 14:51:27 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/02 12:31:53 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <unistd.h>
 #include "libft.h"
 #include "fillit.h"
 
@@ -24,16 +25,15 @@ char    *read_input(const char *file)
 
     i = 0;
     if ((fd = open(file, O_RDONLY)) == -1)
-        printf("Error");
-
+		return (NULL);
     while ((read_stat = read(fd, buffer, 1)))
     {
         tmp[i++] = buffer[0];
         if (i > 545)
-            printf("Error");
+			return(NULL);
     }
     tmp[i] = '\0';
     if (close(fd) == -1)
-        printf("Error");
+		return (NULL);
     return (ft_strdup(tmp));
 }

@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/02 11:43:07 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/02 12:30:08 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 char	**make_map(size_t map_size)
 {
-	char **map;
-	int i;
+	char	**map;
+	size_t	i;
 
 	if (!(map = ft_memalloc(sizeof(char *) * map_size)))
 		return (NULL);
@@ -26,7 +26,7 @@ char	**make_map(size_t map_size)
 	{
 		if (!(map[i] = ft_strnew(map_size)))
 		{
-			ft_free_2d_array(map, i);
+			ft_free_2d_array((void ***)&map, i);
 			return (NULL);
 		}
 		i++;
@@ -47,17 +47,6 @@ void	print_map(char **map, size_t map_size)
 	}
 }
 
-void	free_map(char ***map, size_t map_size)
-{
-	size_t i;
-
-	i = 0;
-	while (i < map_size)
-		free(*map[i++]);
-	free(*map);
-	*map = NULL;
-}
-
 t_list	*allocate_list(char **split_input) {
 	t_list	*start;
 	t_list	*piece;
@@ -72,7 +61,7 @@ t_list	*allocate_list(char **split_input) {
 		if(!(piece->next = new_item(split_input[i], 'A' + i)))
 		{
 			free_list(&start);
-			return (NULL):
+			return (NULL);
 		}
 		i++;
 		piece = piece->next;
@@ -90,10 +79,17 @@ int		main(int argc, char **argv)
 
     if(argc == 2)
     {
-        input = read_input(argv[1]);
-        if(!check_input(input))
+	    if(!(input = read_input(argv[1])))
+		{
 			ft_putstr("Error\n");
-		if(!(start_piece = allocate_list(tetrininos_split(input))))
+			return (2); //2 refers to a file error
+		}
+        if(!check_input(input))
+		{
+			ft_putstr("Error\n");
+			return (2); //2 refers to a file error
+		}
+		if(!(start_piece = allocate_list(tetriminos_split(input))))
 			return (1);
 		solution_found = 0;
 		map_size = 1;
@@ -106,7 +102,7 @@ int		main(int argc, char **argv)
 		}
 		free_list(&start_piece);
 		print_map(map, map_size);
-		free_map(map, map_size);
+		ft_free_2d_array((void ***)&map, map_size);
 	}
 	else
 		ft_putstr("Error\n");

@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 12:27:37 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/02 11:02:01 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/02 12:19:01 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ unsigned int     check_input(char *tetriminos)
         if (tetriminos[i] == '#' && tc < 4)
             tc++;
         else if (tetriminos[i] == '#' && tc == 4)
-            return(crash_report("Tetriminos too large\n"));
+            return (0);
         if (tetriminos[i] == '#' || tetriminos[i] == '.')
             c++;
         else if ((tetriminos[i] == '\n' || tetriminos[i] == '\0') && c == 4)

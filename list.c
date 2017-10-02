@@ -6,16 +6,17 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 00:03:35 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/02 11:38:38 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/02 12:23:25 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 #include "fillit.h"
 
 static t_coords	*find_dimensions(char const *shape)
 {
-	t_list	*coords;
+	t_coords	*coords;
 
 	if (!(coords = ft_memalloc(sizeof(t_coords))))
 		return (NULL);
@@ -25,7 +26,7 @@ static t_coords	*find_dimensions(char const *shape)
 	{
 		if (*shape == '\n')
 			coords->y++;
-		else if (coords->y == 0 &&)
+		else if (coords->y == 0)
 			coords->x++;
 		shape++;
 	}
@@ -49,7 +50,7 @@ t_list	*new_item(char *shape, char id)
 void	free_item(t_list **item)
 {
 	free((*item)->shape);
-	free((*item)->coords);
+	free((*item)->dim);
 	free(*item);
 	*item = NULL;
 }
@@ -60,7 +61,7 @@ void	free_list(t_list **item)
 
 	while (*item)
 	{
-		tmp = *item->next;
+		tmp = (*item)->next;
 		free_item(item);
 		*item = tmp;
 	}

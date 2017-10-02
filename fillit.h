@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/02 11:30:45 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/02 12:28:03 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-int					loop_through_condidates(char **map, size_t map_size, t_list *piece);
+int					loop_through_candidates(char **map, size_t map_size, t_list *piece);
 int					consider_candidate(char **map, size_t map_size, t_list *piece);
-int					accept(char **map, size_t map_size, t_list *piece);
-void				set_piece(char **map, size_t map_size, t_list *piece, t_coords *coords);
+int					accept(t_list *piece);
+void				set_piece(char **map, t_list *piece, t_coords *coords);
 void				remove_piece(char **map, size_t map_size, t_list *piece);
 t_coords			*find_first_placement(char **map, size_t map_size, t_list *piece);
 int					can_place_here(char **map, size_t map_size, t_list *piece, t_coords *coords);
@@ -46,5 +46,6 @@ void				free_map(char **map, size_t map_size);
 
 char    			*read_input(char const *file);
 unsigned int        check_input(char *tetriminos);
+char				**tetriminos_split(char *tetriminos);
 
 #endif

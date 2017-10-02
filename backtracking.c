@@ -6,10 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/02 11:41:06 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/02 12:17:51 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 #include "fillit.h"
 
@@ -22,14 +23,14 @@ int		loop_through_candidates(char **map, size_t map_size, t_list *piece)
 	i = 0;
 	list_len = ft_lstlen(piece);
 	found = 0;
-	while (i < list_len && !found;)
+	while (i < list_len && !found)
 	{	
-		piece = ft_lst_swap(start, 0, i);
+		piece = ft_lst_swap(&piece, 0, i);
 		found = consider_candidate(map, map_size, piece);
 		if (!found)
 		{
 			remove_piece(map, map_size, piece);
-			piece = ft_lst_swap(piece, 0, i);
+			piece = ft_lst_swap(&piece, 0, i);
 			i++;
 		}
 	}
@@ -45,19 +46,19 @@ int 	consider_candidate(char **map, size_t map_size, t_list *piece)
 		free(coords);
 		return (0);
 	}
-	set_piece(map, map_size, piece, coords);
+	set_piece(map, piece, coords);
 	free(coords);
-	if (accept(map, map_size, piece))
+	if (accept(piece))
 		return (1);
 	return (loop_through_candidates(map, map_size, piece->next));
 }
 
-int		accept(char **map, size_t map_size, t_list *piece)
+int		accept(t_list *piece)
 {
-	return (ft_lstlen(piece) == 1)
+	return (ft_lstlen(piece) == 1);
 }
 
-void	set_piece(char **map, size_t map_size, t_list *piece, t_coords *coords)
+void	set_piece(char **map, t_list *piece, t_coords *coords)
 {
 	int x;
 	int y;
@@ -79,23 +80,23 @@ void	set_piece(char **map, size_t map_size, t_list *piece, t_coords *coords)
 
 void	remove_piece(char **map, size_t map_size, t_list *piece)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (i < map_size * map_size)
 	{
 		if (map[i / map_size][i % map_size] == piece->id)
-			map[i / map_size][i % map_size] == '.';
+			map[i / map_size][i % map_size] = '.';
 		i++;
 	}
 }
 
 t_coords *find_first_placement(char **map, size_t map_size, t_list *piece)
 {
-	t_coords *coords;
-	int i;
+	t_coords	*coords;
+	size_t		i;;
 	
-	if (!(coords = (t_coords *)malloc(sizeof(t_coords))));
+	if (!(coords = (t_coords *)malloc(sizeof(t_coords))))
 		return (NULL);
 	i = 0;
 	while (i < map_size * map_size)
@@ -116,11 +117,11 @@ int		can_place_here(char **map, size_t map_size, t_list *piece, t_coords *coords
 
 	y = 0;
 	x = 0;
-	while (y < piece->dim->y)
+	while (y < piece->dim->y && coords->y + y < (int)map_size)
 	{
-		while (x < piece->dim->x)
+		while (x < piece->dim->x && coords->x + x < (int)map_size)
 		{
-			if (map[coords->y + y][coords->x + x] != '.' && piece->shape[(y * piece->dim->x) + 1 + x] == '#'))
+			if (map[coords->y + y][coords->x + x] != '.' && piece->shape[(y * piece->dim->x) + 1 + x] == '#')
 				return (0);
 			x++;
 		}
