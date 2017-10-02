@@ -6,9 +6,11 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 12:27:37 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/01 14:50:50 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/02 11:02:01 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "fillit.h"
 
 #include "fillit.h"
 
@@ -17,14 +19,20 @@ unsigned int     check_input(char *tetriminos)
     int i;
     int c;
     int ct;
+    int tc;
 
     ct = 0;
+    tc = 0;
     i = 0;
     c = 0;
     if (!tetriminos[i])
         return (0);
     while (tetriminos[i])
     {
+        if (tetriminos[i] == '#' && tc < 4)
+            tc++;
+        else if (tetriminos[i] == '#' && tc == 4)
+            return(crash_report("Tetriminos too large\n"));
         if (tetriminos[i] == '#' || tetriminos[i] == '.')
             c++;
         else if ((tetriminos[i] == '\n' || tetriminos[i] == '\0') && c == 4)
@@ -33,7 +41,10 @@ unsigned int     check_input(char *tetriminos)
             ct++;
         }
         else if (tetriminos[i] == '\n' && c == 0 && ct == 4)
+        {
             ct = 0;
+            tc = 0;
+        }
         else
             return (0);
         i++;

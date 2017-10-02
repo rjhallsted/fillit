@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run.c                                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
+/*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/01 14:43:26 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/01 19:00:06 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 char	**make_map(size_t map_size)
 {
 	char **map;
-	int i;	
+	int i;
 
 	if (!(map = ft_memalloc(sizeof(char *) * map_size)))
 		return (NULL);
@@ -58,10 +58,23 @@ void	free_map(char ***map, size_t map_size)
 	*map = NULL;
 }
 
+void allocate_list(char **split_input, t_list *piece) {
+	int i;
+
+	i = 1;
+	*start_piece = split_input[0];
+	while(split_input[i])
+	{
+		piece->next = split_input[i++];
+		piece = piece->next;
+	}
+}
+
 int		main(int argc, char **argv)
 {
 	char	*input;
-	t_list *start_piece;
+	char	**split_input;
+	t_list	*start_piece;
 	char 	**map;
 	size_t	map_size;
 	int		solution_found;
@@ -71,6 +84,8 @@ int		main(int argc, char **argv)
         input = read_input(argv[1]);
         if(!check_input(input))
 			ft_putstr("Error\n");
+		split_input = tetriminos_split(input);
+		allocate_list(split_input, piece->next);
 		solution_found = 0;
 		map_size = 1;
 		while (!solution_found)
