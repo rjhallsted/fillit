@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 11:21:20 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 11:57:40 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,6 @@ void	print_map(char **map, size_t map_size)
 	}
 }
 
-t_list	*allocate_list(char **split_input) {
-	t_list	*start;
-	t_list	*piece;
-	int 	i;
-	
-	if(!(start = new_item(split_input[0], 'A')))
-		return (NULL);
-	piece = start;
-	i = 1;
-	while(split_input[i])
-	{
-		if(!(piece->next = new_item(split_input[i], 'A' + i)))
-		{
-			free_list(&start);
-			return (NULL);
-		}
-		i++;
-		piece = piece->next;
-	}
-	return (start);
-}
-
 int		main(int argc, char **argv)
 {
 	char	*input;
@@ -92,7 +70,7 @@ int		main(int argc, char **argv)
 			ft_putstr("Error\n");
 			return (2); //2 refers to a file error
 		}
-		if(!(start_piece = allocate_list(tetri_split(input))))
+		if(!(start_piece = tetri_split(input)))
 			return (1);
 		solution_found = 0;
 		map_size = 1;
