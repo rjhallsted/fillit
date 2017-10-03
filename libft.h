@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/02 17:28:43 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 10:30:06 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "fillit.h"
 
 # define MIN(a, b) ((a > b) ? b : a)
+# define MAX(a, b) ((a > b) ? a : b)
 
 void				ft_bzero(void *s, size_t n);
 void				ft_free_2d_array(void ***array, size_t size);

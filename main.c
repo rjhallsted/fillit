@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/02 12:30:08 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 10:45:44 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		main(int argc, char **argv)
 			ft_putstr("Error\n");
 			return (2); //2 refers to a file error
 		}
-		if(!(start_piece = allocate_list(tetriminos_split(input))))
+		if(!(start_piece = allocate_list(tetri_split(input))))
 			return (1);
 		solution_found = 0;
 		map_size = 1;

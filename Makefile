@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/02 17:31:12 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/03 10:09:06 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -67,7 +67,7 @@ $(LIBNAME): $(LIBOBJS)
 $(NAME): $(LIBNAME) $(MAINOBJS)
 
 clean:
-	@rm -rf $(MAINOBJS) $(LIBOBJS)
+	@rm -rf $(MAINOBJS) $(LIBOBJS) $(TESTOBJS)
 
 fclean: clean
 	@rm -rf $(NAME) $(LIBNAME) t
@@ -77,5 +77,5 @@ re: fclean all
 .SILENT: $(LIBOBJS) $(MAINOBJS)
 
 t: $(LIBNAME) $(TESTOBJS)
-	$(CC) $(CFLAGS) -o t $(TESTOBJS) $(LIBNAME)
+	$(CC) $(CFLAGS) $(TESTOBJS) $(LIBNAME) -o t
 	./t $(TESTFILE) | cat -e

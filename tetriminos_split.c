@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/02 17:32:22 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 10:44:26 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*trim_tetri(char const *input)
 	int i;
 	t_coords *coords;
 	t_coords *dim;
-	int pos;
+	int tmp;
 	char *tetri;
 
 	i = 0;
@@ -34,16 +34,16 @@ char	*trim_tetri(char const *input)
 		return (NULL);
 	dim->x = 0;
 	dim->y = 0;
+	tmp = 0;
 	while (i < 21)
 	{
 		if (input[i] == '#')
 		{
 			coords->x = MIN(coords->x, i % 5);
 			coords->y  = MIN(coords->y, i / 5);
-			if (i % 5 > coords->x)
-				dim->x = (i % 5 + 1) - coords->x;
-			if (i / 5 > coords->y)
-				dim->y = (i / 5 + 1) - coords->y;
+			tmp = MAX(tmp, i % 5);
+			dim->x = tmp - coords->x + 1;
+			dim->y = MAX(dim->y, ((i / 5) + 1) - coords->y);
 		}
 		i++;
 	}
@@ -52,8 +52,8 @@ char	*trim_tetri(char const *input)
 	i = 0;
 	while (i < dim->y)
 	{
-		pos = ((coords->y + i) * 5) + coords->x;
-		ft_strncat(tetri, input + pos, dim->x);
+		tmp = ((coords->y + i) * 5) + coords->x;
+		ft_strncat(tetri, input + tmp, dim->x);
 		ft_strncat(tetri, "\n", 1);
 		i++;
 	}
@@ -74,7 +74,7 @@ char **tetri_split(char const *input)
 	{
 		if (!(split[i] = trim_tetri(input)))
 			return (NULL); //also free formers
-		printf("%s\n--------\n", split[i]);
+		printf("%s--------\n", split[i]);
 		input += 21;
 	}
 	return (split);
