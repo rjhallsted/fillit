@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/03 12:02:04 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 11:46:25 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,30 +60,22 @@ char	*trim_tetri(char const *input)
 	return (tetri);
 }
 
-t_list *tetri_split(char const *input)
+char **tetri_split(char const *input)
 {
-	t_list	*start;
-	t_list	*current;
-	char	*shape;
+	char	**split;
 	int		i;
 	int		size;
-
-	shape = trim_tetri(input);
-	if (!(start = new_item(shape, 'A')))
+	
+	size = (ft_strlen(input) / 21) + 2;
+	if (!(split = ft_memalloc(sizeof(char *) * size)))
 		return (NULL);
-	free(shape);
-	input += 21;
-	current = start;
-	i = 1;
-	size = (ft_strlen(input) / 21) + 1;
-	while (*input && i <= size)
+	i = 0;
+	while (*input)
 	{
-		shape = trim_tetri(input);
-		if (!(current->next = new_item(shape, 'A' + i)))
+		if (!(split[i++] = trim_tetri(input)))
 			return (NULL); //also free formers
-		i++;
 		input += 21;
-		current = current->next;
 	}
-	return (start);
+	split[i] = NULL;
+	return (split);
 }
