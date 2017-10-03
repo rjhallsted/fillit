@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/03 10:09:06 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/03 10:59:37 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -33,6 +33,7 @@ LIBLIST		=	ft_bzero				\
 				ft_strncat				\
 				ft_strncpy				\
 				ft_strnew				\
+				ft_swap
 
 MAINLIST	=	check_input				\
 				tetriminos_split		\
@@ -62,9 +63,10 @@ $(MAINOBJS): $(MAINSRCS)
 $(TESTOBJS): $(TESTSRCS)
 
 $(LIBNAME): $(LIBOBJS)
-	@ar rcs $(LIBNAME) $(LIBOBJS)
+	ar rcs $(LIBNAME) $(LIBOBJS)
 
 $(NAME): $(LIBNAME) $(MAINOBJS)
+	$(CC) $(CFLAGS) $(MAINOBJS) $(LIBNAME) -o $(NAME)
 
 clean:
 	@rm -rf $(MAINOBJS) $(LIBOBJS) $(TESTOBJS)
