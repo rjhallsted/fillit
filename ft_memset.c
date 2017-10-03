@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/02 15:01:30 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 11:39:14 by rhallste         ###   ########.fr       */
+/*   Created: 2017/09/19 15:11:09 by rhallste          #+#    #+#             */
+/*   Updated: 2017/09/20 10:42:11 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <string.h>
 
-#include <stdio.h>
+void	*ft_memset(void *b, int c, size_t len)
+{
+	char *str;
 
-int main(int argc, char const *argv[]) {
-    char *tetriminos;
-    char **split_tetriminos;
-    if(argc == 2)
-    {
-        tetriminos = read_input(argv[1]);
-        if(!check_input(tetriminos))
-			return (1);
-        split_tetriminos = tetri_split(tetriminos);
-		while (*split_tetriminos)
-			printf("%s----\n", *split_tetriminos++);
-    }
-    return 0;
+	str = b;
+	while (len > 0)
+		str[--len] = c;
+	return (b);
 }

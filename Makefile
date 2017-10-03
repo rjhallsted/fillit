@@ -6,14 +6,14 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/03 10:59:37 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/03 11:37:46 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME		= 	fillit
 LIBNAME		=	libft.a
 
-TESTFILE	=	valid_test
+TESTFILE	=	simple_test
 
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
@@ -23,6 +23,7 @@ LIBLIST		=	ft_bzero				\
 				ft_lst_swap				\
 				ft_lstlen				\
 				ft_memalloc				\
+				ft_memset				\
 				ft_putchar				\
 				ft_putchar_fd			\
 				ft_putstr				\

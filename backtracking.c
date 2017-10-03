@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/02 12:17:51 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 11:48:21 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	set_piece(char **map, t_list *piece, t_coords *coords)
 	{
 		while (x < piece->dim->x)
 		{
-			if (piece->shape[(y * piece->dim->x) + 1 + x] == '#')
+			if (piece->shape[(y * (piece->dim->x + 1)) + x] == '#')
 				map[coords->y + y][coords->x + x] = piece->id;
 			x++;
 		}
@@ -117,6 +117,8 @@ int		can_place_here(char **map, size_t map_size, t_list *piece, t_coords *coords
 
 	y = 0;
 	x = 0;
+	if (piece->dim->x > (int)map_size || piece->dim->y > (int)map_size)
+		return (0);
 	while (y < piece->dim->y && coords->y + y < (int)map_size)
 	{
 		while (x < piece->dim->x && coords->x + x < (int)map_size)
@@ -125,8 +127,12 @@ int		can_place_here(char **map, size_t map_size, t_list *piece, t_coords *coords
 				return (0);
 			x++;
 		}
+		if (x < piece->dim->x)
+			return (0);
 		x = 0;
 		y++;
 	}
+	if (y < piece->dim->y)
+		return (0);
 	return (1);
 }

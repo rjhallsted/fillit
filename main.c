@@ -6,13 +6,15 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 10:45:44 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 11:21:20 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 #include "fillit.h"
+
+#include <stdio.h>
 
 char	**make_map(size_t map_size)
 {
@@ -29,6 +31,7 @@ char	**make_map(size_t map_size)
 			ft_free_2d_array((void ***)&map, i);
 			return (NULL);
 		}
+		ft_memset(map[i], '.', map_size);
 		i++;
 	}
 	return (map);
@@ -93,12 +96,18 @@ int		main(int argc, char **argv)
 			return (1);
 		solution_found = 0;
 		map_size = 1;
-		while (!solution_found)
+		while (!solution_found && map_size < 10)
 		{
 			map_size++;
+			printf("Map size: %d\n", (int)map_size);
 			if (!(map = make_map(map_size)))
 				return (1); //1 will refer to a memory allocation failure
 			solution_found = loop_through_candidates(map, map_size, start_piece);
+			if (!solution_found)
+			{
+				print_map(map, map_size);
+				ft_free_2d_array((void ***)&map, map_size);
+			}
 		}
 		free_list(&start_piece);
 		print_map(map, map_size);

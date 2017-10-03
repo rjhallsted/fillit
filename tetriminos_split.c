@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/03 10:44:26 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 11:46:25 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <stdlib.h>
 #include "fillit.h"
 #include "libft.h"
-
-#include <stdio.h>
 
 char	*trim_tetri(char const *input)
 {
@@ -64,18 +62,20 @@ char	*trim_tetri(char const *input)
 
 char **tetri_split(char const *input)
 {
-	char **split;
-	int i;
-
-	if (!(split = ft_memalloc(sizeof(char *) * (ft_strlen(input) / 21))))
+	char	**split;
+	int		i;
+	int		size;
+	
+	size = (ft_strlen(input) / 21) + 2;
+	if (!(split = ft_memalloc(sizeof(char *) * size)))
 		return (NULL);
 	i = 0;
-	while (*input && *(input + 19))
+	while (*input)
 	{
-		if (!(split[i] = trim_tetri(input)))
+		if (!(split[i++] = trim_tetri(input)))
 			return (NULL); //also free formers
-		printf("%s--------\n", split[i]);
 		input += 21;
 	}
+	split[i] = NULL;
 	return (split);
 }

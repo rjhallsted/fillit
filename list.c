@@ -6,13 +6,15 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 00:03:35 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/02 12:23:25 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 11:37:11 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 #include "fillit.h"
+
+#include <stdio.h>
 
 static t_coords	*find_dimensions(char const *shape)
 {
@@ -43,6 +45,8 @@ t_list	*new_item(char *shape, char id)
 	new->id = id;
 	if (!(new->dim = find_dimensions(shape)))
 		return (NULL);
+	printf("dims: %dx%d\n", new->dim->x, new->dim->y);
+	printf("%s\n", shape);
 	new->next = NULL;
 	return (new);
 }
