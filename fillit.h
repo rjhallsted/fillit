@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 11:58:04 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 14:32:23 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ typedef struct		s_list
 }					t_list;
 
 int					loop_through_candidates(char **map, size_t map_size, t_list *piece);
-int					consider_candidate(char **map, size_t map_size, t_list *piece);
+int					consider_candidate(char **map, size_t map_size, t_list *piece, t_coords *coords);
 int					accept(t_list *piece);
 void				set_piece(char **map, t_list *piece, t_coords *coords);
 void				remove_piece(char **map, size_t map_size, t_list *piece);
-t_coords			*find_first_placement(char **map, size_t map_size, t_list *piece);
+t_coords			*find_first_placement(char **map, size_t map_size, t_list *piece, size_t start_at);
 int					can_place_here(char **map, size_t map_size, t_list *piece, t_coords *coords);
 
 t_list				*new_item(char *shape, char id);

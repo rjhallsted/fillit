@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 12:14:55 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 14:31:41 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,37 @@
 
 int		loop_through_candidates(char **map, size_t map_size, t_list *piece)
 {
-	int 	i;
-	int		list_len;
-	int		found;
+	int 		i;
+	int			list_len;
+	int			found;
+	t_coords	*start_at;
+	int			tmp;
 
 	i = 0;
 	list_len = ft_lstlen(piece);
 	found = 0;
-	while (i < list_len && !found)
-	{	
-		piece = ft_lst_swap(&piece, 0, i);
-		found = consider_candidate(map, map_size, piece);
+	if (!(start_at = find_first_placement(map, map_size, piece, 0)))
+		return (0);
+	while (start_at && !found)
+	{
+		found = consider_candidate(map, map_size, piece, start_at);
 		if (!found)
 		{
 			remove_piece(map, map_size, piece);
-			piece = ft_lst_swap(&piece, 0, i);
-			i++;
+			tmp = (start_at->y * (map_size + 1)) + start_at->x + 1;
+			free(start_at);
+			if (!(start_at = find_first_placement(map, map_size, piece, tmp)))
+				return (0);
 		}
+		else
+			free(start_at);
 	}
 	return (found);
 }
 
-int 	consider_candidate(char **map, size_t map_size, t_list *piece)
+int 	consider_candidate(char **map, size_t map_size, t_list *piece, t_coords *coords)
 {
-	t_coords *coords;
-
-	if (!(coords = find_first_placement(map, map_size, piece)))
-	{
-		free(coords);
-		return (0);
-	}
 	set_piece(map, piece, coords);
-	free(coords);
 	if (accept(piece))
 		return (1);
 	return (loop_through_candidates(map, map_size, piece->next));
@@ -91,14 +90,14 @@ void	remove_piece(char **map, size_t map_size, t_list *piece)
 	}
 }
 
-t_coords *find_first_placement(char **map, size_t map_size, t_list *piece)
+t_coords *find_first_placement(char **map, size_t map_size, t_list *piece, size_t start_at)
 {
 	t_coords	*coords;
-	size_t		i;;
+	size_t		i;
 	
 	if (!(coords = (t_coords *)malloc(sizeof(t_coords))))
 		return (NULL);
-	i = 0;
+	i = start_at;
 	while (i < map_size * map_size)
 	{
 		coords->y = i / map_size;
