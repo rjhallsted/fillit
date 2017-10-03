@@ -6,39 +6,76 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/02 14:55:26 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/02 17:32:22 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
 
+#include <stdlib.h>
 #include "fillit.h"
+#include "libft.h"
 
-char **tetriminos_split(char *tetriminos)
+#include <stdio.h>
+
+char	*trim_tetri(char const *input)
 {
-    char **split_tetriminos;
-    int i;
-    int s;
-    int c;
+	int i;
+	t_coords *coords;
+	t_coords *dim;
+	int pos;
+	char *tetri;
 
-    i = 0;
-    s = 0;
-    c = 0;
-    split_tetriminos = malloc(sizeof(char *) * 572);
-    while(tetriminos[i])
-    {
-        if(c >= 4)
-        {
-            s++;
-            c = 0;
-        }
-        if (tetriminos[i] == '.' && tetriminos[i+1] == '#')
-            i++;
-        if (tetriminos[i] == '.' && tetriminos[i+1] == '.' && tetriminos[i+2] == '.' && tetriminos[i+3] == '.')
-            i += 4;
-        split_tetriminos[s] = malloc(sizeof(tetriminos));
-        split_tetriminos[s][c] = tetriminos[i];
-        i++;
-    }
-    return(split_tetriminos);
+	i = 0;
+	if (!(coords = ft_memalloc(sizeof(t_coords))))
+		return (NULL);
+	coords->x = 4;
+	coords->y = 4;
+	if (!(dim = ft_memalloc(sizeof(t_coords))))
+		return (NULL);
+	dim->x = 0;
+	dim->y = 0;
+	while (i < 21)
+	{
+		if (input[i] == '#')
+		{
+			coords->x = MIN(coords->x, i % 5);
+			coords->y  = MIN(coords->y, i / 5);
+			if (i % 5 > coords->x)
+				dim->x = (i % 5 + 1) - coords->x;
+			if (i / 5 > coords->y)
+				dim->y = (i / 5 + 1) - coords->y;
+		}
+		i++;
+	}
+	if (!(tetri = ft_strnew((dim->x * dim->y) + dim->y)))
+		return (NULL);
+	i = 0;
+	while (i < dim->y)
+	{
+		pos = ((coords->y + i) * 5) + coords->x;
+		ft_strncat(tetri, input + pos, dim->x);
+		ft_strncat(tetri, "\n", 1);
+		i++;
+	}
+	free(coords);
+	free(dim);
+	return (tetri);
+}
+
+char **tetri_split(char const *input)
+{
+	char **split;
+	int i;
+
+	if (!(split = ft_memalloc(sizeof(char *) * (ft_strlen(input) / 21))))
+		return (NULL);
+	i = 0;
+	while (*input && *(input + 19))
+	{
+		if (!(split[i] = trim_tetri(input)))
+			return (NULL); //also free formers
+		printf("%s\n--------\n", split[i]);
+		input += 21;
+	}
+	return (split);
 }
