@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 11:57:40 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 12:18:22 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ int		main(int argc, char **argv)
     {
 	    if(!(input = read_input(argv[1])))
 		{
-			ft_putstr("Error\n");
+			ft_putstr("error\n");
 			return (2); //2 refers to a file error
 		}
         if(!check_input(input))
 		{
-			ft_putstr("Error\n");
+			ft_putstr("error\n");
 			return (2); //2 refers to a file error
 		}
 		if(!(start_piece = tetri_split(input)))
@@ -92,6 +92,6 @@ int		main(int argc, char **argv)
 		ft_free_2d_array((void ***)&map, map_size);
 	}
 	else
-		ft_putstr("Error\n");
+		ft_putstr("error\n");
 	return (0);
 }
