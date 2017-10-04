@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/04 14:13:21 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/04 15:25:24 by rhallste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,6 @@ CFLAGS		=	-Wall -Werror -Wextra
 
 LIBLIST		=	ft_bzero				\
 				ft_free_2d_array		\
-				ft_lst_swap				\
-				ft_lstlen				\
 				ft_memalloc				\
 				ft_memset				\
 				ft_putchar				\

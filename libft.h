@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 11:21:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/04 15:24:56 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 
 void				ft_bzero(void *s, size_t n);
 void				ft_free_2d_array(void ***array, size_t size);
-t_list				*ft_lst_swap(t_list **lst_start, int fi, int si);
-size_t				ft_lstlen(t_list *item);
 void				*ft_memalloc(size_t len);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_putchar(char c);
