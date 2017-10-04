@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 16:30:19 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/04 11:58:51 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-int					loop_through_candidates(char **map, size_t map_size, t_list *piece);
-int					consider_candidate(char **map, size_t map_size, t_list *piece, t_coords *coords);
-int					accept(t_list *piece);
-void				set_piece(char **map, t_list *piece, t_coords *coords);
-void				remove_piece(char **map, size_t map_size, t_list *piece);
-t_coords			*find_first_placement(char **map, size_t map_size, t_list *piece, size_t start_at);
-int					can_place_here(char **map, size_t map_size, t_list *piece, t_coords *coords);
+int					loop_through_candidates(char **map, size_t map_size, char **piece, char id);
+int 				consider_candidate(char **map, size_t map_size, char **piece, t_coords *coords, t_coords *dim, char id);
+int					accept(char **piece);
+void				set_piece(char **map, char **piece, t_coords *coords, t_coords *dim, char id);
+void				remove_piece(char **map, size_t map_size, char id);
+t_coords 			*find_first_placement(char **map, size_t map_size, char **piece, size_t start_at, t_coords *dim);
+t_coords			*find_dimensions(char const *shape);
+int					can_place_here(char **map, size_t map_size, char **piece, t_coords *coords, t_coords *dim);
 
 t_list				*new_item(char *shape, char id);
 void				free_item(t_list **item);

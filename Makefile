@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
+#    By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/03 11:37:46 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/04 13:42:47 by sjuery           ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 NAME		= 	fillit
 LIBNAME		=	libft.a
@@ -38,11 +38,11 @@ LIBLIST		=	ft_bzero				\
 
 MAINLIST	=	check_input				\
 				tetriminos_split		\
-				read_input				
+				read_input
 
 MAIN		=	main					\
 				backtracking			\
-				list					
+				list
 TEST		=	test
 
 LIBSRCS		=	$(addsuffix .c, $(LIBLIST))
