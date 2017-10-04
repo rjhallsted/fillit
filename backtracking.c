@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/04 14:33:24 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/04 16:24:47 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,18 @@ int		loop_through_candidates(char **map, size_t map_size, char **piece, char id)
 	dim = find_dimensions(*piece);
 	if (!(start_at = find_first_placement(map, map_size, piece, 0, dim)))
 		return (0);
+//	printf("%c -> (%d, %d)\n", id, start_at->x, start_at->y);
 	while (start_at && !found)
 	{
 		found = consider_candidate(map, map_size, piece, start_at, dim, id);
 		if (!found)
 		{
 			remove_piece(map, map_size, id);
-			tmp = (start_at->y * (map_size + 1)) + start_at->x + 1;
+			tmp = (start_at->y * map_size) + start_at->x + 1;
 			free(start_at);
 			if (!(start_at = find_first_placement(map, map_size, piece, tmp, dim)))
 				return (0);
+//			printf("%c -> (%d, %d)\n", id, start_at->x, start_at->y);
 		}
 		else
 			free(start_at);
