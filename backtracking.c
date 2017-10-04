@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   backtracking.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
+/*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 14:31:41 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/03 16:34:46 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "fillit.h"
 
-int		loop_through_candidates(char **map, size_t map_size, t_list *piece)
+int		loop_through_candidates(char **map, size_t map_size, char *piece)
 {
 	int 		i;
 	int			list_len;
@@ -44,7 +44,7 @@ int		loop_through_candidates(char **map, size_t map_size, t_list *piece)
 	return (found);
 }
 
-int 	consider_candidate(char **map, size_t map_size, t_list *piece, t_coords *coords)
+int 	consider_candidate(char **map, size_t map_size, char *piece, t_coords *coords)
 {
 	set_piece(map, piece, coords);
 	if (accept(piece))
@@ -52,12 +52,12 @@ int 	consider_candidate(char **map, size_t map_size, t_list *piece, t_coords *co
 	return (loop_through_candidates(map, map_size, piece->next));
 }
 
-int		accept(t_list *piece)
+int		accept(char *piece)
 {
 	return (ft_lstlen(piece) == 1);
 }
 
-void	set_piece(char **map, t_list *piece, t_coords *coords)
+void	set_piece(char **map, char *piece, t_coords *coords)
 {
 	int x;
 	int y;
@@ -77,7 +77,7 @@ void	set_piece(char **map, t_list *piece, t_coords *coords)
 	}
 }
 
-void	remove_piece(char **map, size_t map_size, t_list *piece)
+void	remove_piece(char **map, size_t map_size, char *piece)
 {
 	size_t i;
 
@@ -90,11 +90,11 @@ void	remove_piece(char **map, size_t map_size, t_list *piece)
 	}
 }
 
-t_coords *find_first_placement(char **map, size_t map_size, t_list *piece, size_t start_at)
+t_coords *find_first_placement(char **map, size_t map_size, char *piece, size_t start_at)
 {
 	t_coords	*coords;
 	size_t		i;
-	
+
 	if (!(coords = (t_coords *)malloc(sizeof(t_coords))))
 		return (NULL);
 	i = start_at;
@@ -106,10 +106,10 @@ t_coords *find_first_placement(char **map, size_t map_size, t_list *piece, size_
 			return (coords);
 		i++;
 	}
-	return (NULL);	
+	return (NULL);
 }
 
-int		can_place_here(char **map, size_t map_size, t_list *piece, t_coords *coords)
+int		can_place_here(char **map, size_t map_size, char *piece, t_coords *coords)
 {
 	int y;
 	int x;
