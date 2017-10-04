@@ -6,14 +6,14 @@
 #    By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/04 13:42:47 by sjuery           ###   ########.fr        #
+#    Updated: 2017/10/04 14:13:21 by rhallste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	fillit
 LIBNAME		=	libft.a
 
-TESTFILE	=	simple_test
+TESTFILE	=	single_piece
 
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra

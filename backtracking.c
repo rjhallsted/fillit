@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/04 14:03:27 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/04 14:12:55 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ int 	consider_candidate(char **map, size_t map_size, char **piece, t_coords *coo
 	set_piece(map, piece, coords, dim, id);
 	if (accept(piece))
 		return (1);
-	return (loop_through_candidates(map, map_size, piece++, id)); //Possible Seg Fault Here
+	return (loop_through_candidates(map, map_size, piece + 1, id + 1)); //Possible Seg Fault Here
 }
 
 int		accept(char **piece)
 {
-	return (ft_strlen(*piece) == 1);
+	return (*(piece + 1) == NULL);
 }
 
 void	set_piece(char **map, char **piece, t_coords *coords, t_coords *dim, char id)

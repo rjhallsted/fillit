@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 15:01:30 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 11:39:14 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/04 14:13:43 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(int argc, char const *argv[]) {
 			return (1);
         split_tetriminos = tetri_split(tetriminos);
 		while (*split_tetriminos)
-			printf("%s----\n", *split_tetriminos++);
+			printf("%s----\n", *(split_tetriminos++));
     }
     return 0;
 }

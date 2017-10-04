@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/04 12:54:38 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/04 14:16:37 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,24 @@ void	print_map(char **map, size_t map_size)
 	}
 }
 
+static size_t piece_count(char **pieces)
+{
+	int i;
+
+	i = 0;
+	while (*pieces++)
+		i++;
+	return (i);
+}
+
 int		main(int argc, char **argv)
 {
 	char	*input;
 	char	**start_piece;
 	char 	**map;
-	char	id;
 	size_t	map_size;
 	int		solution_found;
 
-	id = 'A';
     if(argc == 2)
     {
 	    if(!(input = read_input(argv[1])))
@@ -82,13 +90,14 @@ int		main(int argc, char **argv)
 			printf("Map size: %d\n", (int)map_size);
 			if (!(map = make_map(map_size)))
 				return (1); //1 will refer to a memory allocation failure
-			solution_found = loop_through_candidates(map, map_size, start_piece, id);
+			solution_found = loop_through_candidates(map, map_size, start_piece, 'A');
 			if (!solution_found)
 			{
 				print_map(map, map_size);
 				ft_free_2d_array((void ***)&map, map_size);
 			}
 		}
+		ft_free_2d_array((void ***)&start_piece, piece_count(start_piece));
 		print_map(map, map_size);
 		ft_free_2d_array((void ***)&map, map_size);
 	}
