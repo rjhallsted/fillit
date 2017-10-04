@@ -6,13 +6,12 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 12:27:37 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/02 12:19:01 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/04 16:08:37 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-#include "fillit.h"
+#include <stdio.h>
 
 unsigned int     check_input(char *tetriminos)
 {
@@ -29,18 +28,19 @@ unsigned int     check_input(char *tetriminos)
         return (0);
     while (tetriminos[i])
     {
-        if (tetriminos[i] == '#' && tc < 4)
+        if (tetriminos[i] == '#')
+        {
             tc++;
-        else if (tetriminos[i] == '#' && tc == 4)
-            return (0);
-        if (tetriminos[i] == '#' || tetriminos[i] == '.')
+            c++;
+        }
+        else if (tetriminos[i] == '.')
             c++;
         else if ((tetriminos[i] == '\n' || tetriminos[i] == '\0') && c == 4)
         {
             c = 0;
             ct++;
         }
-        else if (tetriminos[i] == '\n' && c == 0 && ct == 4)
+        else if (tetriminos[i] == '\n' && c == 0 && tc == 4)
         {
             ct = 0;
             tc = 0;
@@ -51,5 +51,7 @@ unsigned int     check_input(char *tetriminos)
         if (tetriminos[i] == '\0' && ct != 4)
             return (0);
     }
+    if(tc != 4)
+        return (0);
     return (1);
 }

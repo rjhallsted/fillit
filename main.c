@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/04 15:23:17 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/04 16:11:07 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,37 +60,6 @@ static size_t piece_count(char **pieces)
 	return (i);
 }
 
-static size_t get_map_size(char **pieces)
-{
-	int i;
-	int j;
-	int k;
-	int count;
-	size_t size;
-
-	i = 0;
-	count = piece_count(pieces);
-	size = 0;
-	j = 1;
-	k = 0;
-	while (i < count)
-	{
-		if (k < j)
-		{
-			k++;
-			i++;
-		}
-		else
-		{
-			size += 2;
-			k = 0;
-			j += 2;
-		}
-	}
-	size += 2;
-	return (size);
-}
-
 int		main(int argc, char **argv)
 {
 	char	*input;
@@ -114,18 +83,18 @@ int		main(int argc, char **argv)
 		if(!(pieces = tetri_split(input)))
 			return (1);
 		solution_found = 0;
-		map_size = get_map_size(pieces) - 1;
-		printf("Piece count: %d\n", (int)piece_count(pieces));
+		map_size = 1;
+		//printf("Piece count: %d\n", (int)piece_count(pieces));
 		while (!solution_found)
 		{
 			map_size++;
-			printf("Map size: %d\n", (int)map_size);
+			//printf("Map size: %d\n", (int)map_size);
 			if (!(map = make_map(map_size)))
 				return (1); //1 will refer to a memory allocation failure
 			solution_found = loop_through_candidates(map, map_size, pieces, 'A');
 			if (!solution_found)
 			{
-				print_map(map, map_size);
+				//print_map(map, map_size);
 				ft_free_2d_array((void ***)&map, map_size);
 			}
 		}
