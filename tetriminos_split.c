@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/03 11:46:25 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/04 14:32:54 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ char **tetri_split(char const *input)
 	int		size;
 	
 	size = (ft_strlen(input) / 21) + 2;
-	if (!(split = ft_memalloc(sizeof(char *) * size)))
+	if (!(split = (char **)ft_memalloc(sizeof(char *) * size)))
 		return (NULL);
 	i = 0;
-	while (*input)
+	while (*input && i < size - 1)
 	{
 		if (!(split[i++] = trim_tetri(input)))
 			return (NULL); //also free formers
