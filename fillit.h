@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 12:03:24 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 13:55:31 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,24 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-int					loop_through_candidates(char **map, size_t map_size, char **piece, char id);
-int 				consider_candidate(char **map, size_t map_size, char **piece, t_coords *coords, t_coords *dim, char id);
+int					loop_through_candidates(char **map, size_t map_size,
+						char **piece, char id);
+int					consider_candidate(char **map, size_t map_size,
+						char **piece, t_coords *coords, t_coords *dim,
+						char id);
 int					accept(char **piece);
-void				set_piece(char **map, char **piece, t_coords *coords, t_coords *dim, char id);
+void				set_piece(char **map, char **piece, t_coords *coords,
+						t_coords *dim, char id);
 void				remove_piece(char **map, size_t map_size, char id);
-t_coords 			*find_first_placement(char **map, size_t map_size, char **piece, size_t start_at, t_coords *dim);
+t_coords			*find_first_placement(char **map, size_t map_size,
+						char **piece, size_t start_at, t_coords *dim);
 t_coords			*find_dimensions(char const *shape);
-int					can_place_here(char **map, size_t map_size, char **piece, t_coords *coords, t_coords *dim);
-
+int					can_place_here(char **map, size_t map_size, char **piece,
+						t_coords *coords, t_coords *dim);
 char				**make_map(size_t map_size);
 void				print_map(char **map, size_t map_size);
 void				free_map(char **map, size_t map_size);
-
-char    			*read_input(char const *file);
+char				*read_input(char const *file);
 int					validate_input(char *tetriminos);
 char				**tetri_split(char const *input);
 
