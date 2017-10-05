@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 14:22:21 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:30:16 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ void				free_map(char **map, size_t map_size);
 char				*read_input(char const *file);
 int					validate_input(char *tetriminos);
 char				**tetri_split(char const *input);
+t_coords			*new_coords(int x, int y);
 
 #endif

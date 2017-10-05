@@ -6,10 +6,9 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/05 13:37:02 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:29:49 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <stdlib.h>
 #include "fillit.h"
@@ -25,14 +24,10 @@ char	*trim_tetri(char const *input)
 	char		*tetri;
 
 	i = 0;
-	if (!(coords = ft_memalloc(sizeof(t_coords))))
+	if (!(coords = new_coords(4, 4)))
 		return (NULL);
-	coords->x = 4;
-	coords->y = 4;
-	if (!(dim = ft_memalloc(sizeof(t_coords))))
+	if (!(dim = new_coords(0, 0)))
 		return (NULL);
-	dim->x = 0;
-	dim->y = 0;
 	tmp = 0;
 	while (i < 21)
 	{

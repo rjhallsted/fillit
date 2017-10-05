@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 00:03:35 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 14:24:22 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:31:13 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ t_coords	*find_dimensions(char const *shape)
 {
 	t_coords	*coords;
 
-	if (!(coords = ft_memalloc(sizeof(t_coords))))
+	if (!(coords = new_coords(0, 0)))
 		return (NULL);
-	coords->x = 0;
-	coords->y = 0;
 	while (*shape)
 	{
 		if (*shape == '\n')

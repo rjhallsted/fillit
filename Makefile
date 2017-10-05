@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/05 14:24:35 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/05 14:31:34 by rhallste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,11 @@ LIBLIST		=	ft_bzero				\
 
 MAINLIST	=	validate_input			\
 				tetri_split				\
-				read_input
-
+				read_input				
 MAIN		=	main					\
 				backtracking			\
-				finder
+				finder					\
+				coords
 TEST		=	test
 
 LIBSRCS		=	$(addsuffix .c, $(LIBLIST))
