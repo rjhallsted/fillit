@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 15:16:59 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 16:20:29 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void				set_piece(char **map, char **piece, t_coords *coords,
 						char id);
 void				remove_piece(char **map, char id);
 t_coords			*find_placement(char **map, char **piece,
-						size_t start_at);
+						t_coords *dim, size_t start_at);
 t_coords			*find_dimensions(char const *shape);
 int					can_place_here(char **map, char **piece, t_coords *coords,
 						t_coords *dim);

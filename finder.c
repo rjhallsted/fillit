@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 00:03:35 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 15:27:33 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 16:20:00 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,11 @@ int				solution_finder(char **piece)
 	return (0);
 }
 
-t_coords		*find_placement(char **map, char **piece, size_t start_at)
+t_coords		*find_placement(char **map, char **piece, t_coords *dim, size_t start_at)
 {
 	t_coords	*coords;
 	size_t		i;
-	t_coords	*dim;
 
-	dim = find_dimensions(*piece);
 	if (!(coords = (t_coords *)malloc(sizeof(t_coords))))
 		return (NULL);
 	i = start_at;

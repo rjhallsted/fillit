@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/05 16:14:31 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 16:20:52 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char			**tetri_split(char const *input)
 	{
 		if (!(split[i++] = trim_tetri(input)))
 		{
-			ft_free_2d_array(&split, i - 2);
+			ft_free_2d_array((void ***)&split, i - 2);
 			return (NULL);		
 		}
 		input += 21;
