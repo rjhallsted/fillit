@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 15:01:30 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/04 14:13:43 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:43:48 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char const *argv[]) {
     if(argc == 2)
     {
         tetriminos = read_input(argv[1]);
-        if(!check_input(tetriminos))
+        if(!validate_input(tetriminos))
 			return (1);
         split_tetriminos = tetri_split(tetriminos);
 		while (*split_tetriminos)

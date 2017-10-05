@@ -6,14 +6,14 @@
 #    By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/05 14:31:34 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/05 14:45:03 by rhallste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	fillit
 LIBNAME		=	libft.a
 
-TESTFILE	=	single_piece
+TESTFILE	=	valid11
 
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
@@ -37,11 +37,11 @@ LIBLIST		=	ft_bzero				\
 
 MAINLIST	=	validate_input			\
 				tetri_split				\
-				read_input				
+				read_input				\
+				coords
 MAIN		=	main					\
 				backtracking			\
-				finder					\
-				coords
+				finder					
 TEST		=	test
 
 LIBSRCS		=	$(addsuffix .c, $(LIBLIST))
