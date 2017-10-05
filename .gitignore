@@ -2,3 +2,5 @@ t
 *.o
 .nfs.*
 *~
+fillit
+libft.a
