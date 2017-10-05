@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 12:02:16 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:19:25 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include <stdio.h>
 
-char	**make_map(size_t map_size)
+char		**make_map(size_t map_size)
 {
 	char	**map;
 	size_t	i;
@@ -37,7 +37,7 @@ char	**make_map(size_t map_size)
 	return (map);
 }
 
-void	print_map(char **map, size_t map_size)
+void		print_map(char **map, size_t map_size)
 {
 	size_t i;
 
@@ -50,54 +50,30 @@ void	print_map(char **map, size_t map_size)
 	}
 }
 
-static size_t piece_count(char **pieces)
-{
-	int i;
+/*
+** Return 2 refers to a file error
+** Return 1 refers to a memory allocation failure
+*/
 
-	i = 0;
-	while (*pieces++)
-		i++;
-	return (i);
+static int	error(int error_type)
+{
+	ft_putstr("error\n");
+	return (error_type);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	char	*input;
-	char	**pieces;
-	char 	**map;
-	size_t	map_size;
-	int		solution_found;
+	char	**piece;
 
-    if(argc == 2)
-    {
-	    if(!(input = read_input(argv[1])))
-		{
-			ft_putstr("error\n");
-			return (2); //2 refers to a file error
-		}
-        if(!validate_input(input))
-		{
-			ft_putstr("error\n");
-			return (2); //2 refers to a file error
-		}
-		if(!(pieces = tetri_split(input)))
+	if (argc == 2)
+	{
+		if (!(input = read_input(argv[1])) || (!validate_input(input)))
+			return (error(2));
+		if (!(piece = tetri_split(input)))
+			return (error(1));
+		if (solution_finder(piece))
 			return (1);
-		solution_found = 0;
-		map_size = 1;
-		while (!solution_found)
-		{
-			map_size++;
-			if (!(map = make_map(map_size)))
-				return (1); //1 will refer to a memory allocation failure
-			solution_found = loop_through_candidates(map, map_size, pieces, 'A');
-			if (!solution_found)
-			{
-				ft_free_2d_array((void ***)&map, map_size);
-			}
-		}
-		ft_free_2d_array((void ***)&pieces, piece_count(pieces));
-		print_map(map, map_size);
-		ft_free_2d_array((void ***)&map, map_size);
 	}
 	else
 		ft_putstr("error\n");
