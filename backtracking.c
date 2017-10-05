@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 15:27:05 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 16:09:45 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ void		set_piece(char **map, char **piece, t_coords *coords, char id)
 		while (x < dim->x)
 		{
 			if ((*piece)[(y * (dim->x + 1)) + x] == '#')
-			{
 				map[coords->y + y][coords->x + x] = id;
-			}
 			x++;
 		}
 		x = 0;
