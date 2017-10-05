@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 00:03:35 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 14:52:44 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/05 15:23:57 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "fillit.h"
 
-#include <stdio.h>
+extern			size_t g_map_size;
 
 t_coords		*find_dimensions(char const *shape)
 {
@@ -46,22 +46,21 @@ static size_t	piece_count(char **piece)
 int				solution_finder(char **piece)
 {
 	int		solution_found;
-	size_t	map_size;
 	char	**map;
 
 	solution_found = 0;
-	map_size = 1;
+	g_map_size = 1;
 	while (!solution_found)
 	{
-		map_size++;
-		if (!(map = make_map(map_size)))
+		g_map_size++;
+		if (!(map = make_map(g_map_size)))
 			return (1);
-		solution_found = loop_candidates(map, map_size, piece, 'A');
+		solution_found = loop_candidates(map, piece, 'A');
 		if (!solution_found)
-			ft_free_2d_array((void ***)&map, map_size);
+			ft_free_2d_array((void ***)&map, g_map_size);
 	}
 	ft_free_2d_array((void ***)&piece, piece_count(piece));
-	print_map(map, map_size);
-	ft_free_2d_array((void ***)&map, map_size);
+	print_map(map, g_map_size);
+	ft_free_2d_array((void ***)&map, g_map_size);
 	return (0);
 }
