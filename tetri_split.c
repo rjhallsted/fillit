@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/04 18:15:23 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/05 13:37:02 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 
 char	*trim_tetri(char const *input)
 {
-	int i;
-	t_coords *coords;
-	t_coords *dim;
-	int tmp;
-	char *tetri;
+	int			i;
+	t_coords	*coords;
+	t_coords	*dim;
+	int			tmp;
+	char		*tetri;
 
 	i = 0;
 	if (!(coords = ft_memalloc(sizeof(t_coords))))
@@ -61,7 +61,7 @@ char	*trim_tetri(char const *input)
 	return (tetri);
 }
 
-char **tetri_split(char const *input)
+char	**tetri_split(char const *input)
 {
 	char	**split;
 	int		i;

@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/05 12:02:35 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/05 13:46:00 by rhallste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ LIBLIST		=	ft_bzero				\
 				ft_swap
 
 MAINLIST	=	validate_input			\
-				tetriminos_split		\
+				tetri_split				\
 				read_input
 
 MAIN		=	main					\

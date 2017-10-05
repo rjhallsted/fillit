@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 11:43:30 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 12:13:29 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 13:45:35 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,17 @@ static int	count_connections(char *piece, int index)
 	return (count);
 }
 
-static int check_piece(char *piece)
+static int	line_break_check(char *piece, int index)
+{
+	if (index % 5 == 4)
+	{
+		if (piece[index] != '\n')
+			return (0);
+	}
+	return (1);
+}
+
+static int	check_piece(char *piece)
 {
 	int i;
 	int pound_count;
@@ -42,16 +52,12 @@ static int check_piece(char *piece)
 
 	if (!piece)
 		return (0);
-	i = 0;
+	i = -1;
 	pound_count = 0;
 	connections = 0;
-	while(i < 20)
-	{
-		if (i % 5 == 4)
-		{
-			if (piece[i] != '\n')
-				return (0);
-		}
+	while (++i < 20)
+		if (!line_break_check(piece, i))
+			return (0);
 		else
 		{
 			if (piece[i] != '.' && piece[i] != '#')
@@ -62,18 +68,16 @@ static int check_piece(char *piece)
 				connections += count_connections(piece, i);
 			}
 		}
-		i++;
-	}
 	if (pound_count != 4 || (connections != 6 && connections != 8))
 		return (0);
 	return (1);
 }
 
-int validate_input(char *input)
+int			validate_input(char *input)
 {
-	int input_len;
-	int i;
-	char *piece;
+	int		input_len;
+	int		i;
+	char	*piece;
 
 	input_len = ft_strlen(input);
 	if (input_len < 20)
@@ -82,7 +86,7 @@ int validate_input(char *input)
 	while (i < input_len)
 	{
 		piece = ft_strsub(input, i, 20);
-		if(!(check_piece(piece)))
+		if (!(check_piece(piece)))
 			return (0);
 		free(piece);
 		i += 20;
