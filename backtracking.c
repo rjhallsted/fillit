@@ -6,40 +6,35 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/04 16:24:47 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:18:34 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
 #include "fillit.h"
 
-int		loop_through_candidates(char **map, size_t map_size, char **piece, char id)
+int		loop_thru_candidates(char **map, size_t map_size, char **piece, char id)
 {
 	int 		i;
 	int			found;
 	int			tmp;
 	t_coords	*start_at;
-	t_coords 	*dim;
 
 	i = 0;
 	found = 0;
-	dim = find_dimensions(*piece);
-	if (!(start_at = find_first_placement(map, map_size, piece, 0, dim)))
+	if (!(start_at = find_placement(map, map_size, piece, 0)))
 		return (0);
-//	printf("%c -> (%d, %d)\n", id, start_at->x, start_at->y);
 	while (start_at && !found)
 	{
-		found = consider_candidate(map, map_size, piece, start_at, dim, id);
+		found = consider_candidate(map, map_size, piece, start_at, id);
 		if (!found)
 		{
 			remove_piece(map, map_size, id);
 			tmp = (start_at->y * map_size) + start_at->x + 1;
 			free(start_at);
-			if (!(start_at = find_first_placement(map, map_size, piece, tmp, dim)))
+			if (!(start_at = find_placement(map, map_size, piece, tmp)))
 				return (0);
-//			printf("%c -> (%d, %d)\n", id, start_at->x, start_at->y);
 		}
 		else
 			free(start_at);
@@ -47,12 +42,12 @@ int		loop_through_candidates(char **map, size_t map_size, char **piece, char id)
 	return (found);
 }
 
-int 	consider_candidate(char **map, size_t map_size, char **piece, t_coords *coords, t_coords *dim, char id)
+int 	consider_candidate(char **map, size_t map_size, char **piece, t_coords *coords, char id)
 {
-	set_piece(map, piece, coords, dim, id);
+	set_piece(map, piece, coords, id);
 	if (accept(piece))
 		return (1);
-	return (loop_through_candidates(map, map_size, piece + 1, id + 1)); //Possible Seg Fault Here
+	return (loop_thru_candidates(map, map_size, piece + 1, id + 1));
 }
 
 int		accept(char **piece)
@@ -60,13 +55,15 @@ int		accept(char **piece)
 	return (*(piece + 1) == NULL);
 }
 
-void	set_piece(char **map, char **piece, t_coords *coords, t_coords *dim, char id)
+void	set_piece(char **map, char **piece, t_coords *coords, char id)
 {
-	int x;
-	int y;
+	int			x;
+	int			y;
+	t_coords	*dim;
 
 	x = 0;
 	y = 0;
+	dim = find_dimensions(*piece);
 	while (y < dim->y)
 	{
 		while (x < dim->x)
@@ -95,11 +92,13 @@ void	remove_piece(char **map, size_t map_size, char id)
 	}
 }
 
-t_coords *find_first_placement(char **map, size_t map_size, char **piece, size_t start_at, t_coords *dim)
+t_coords *find_placement(char **map, size_t map_size, char **piece, size_t start_at)
 {
 	t_coords	*coords;
 	size_t		i;
+	t_coords	*dim;
 
+	dim = find_dimensions(*piece);
 	if (!(coords = (t_coords *)malloc(sizeof(t_coords))))
 		return (NULL);
 	i = start_at;

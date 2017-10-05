@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 11:43:30 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 13:45:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:14:26 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@ static int	count_connections(char *piece, int index)
 	return (count);
 }
 
-static int	line_break_check(char *piece, int index)
-{
-	if (index % 5 == 4)
-	{
-		if (piece[index] != '\n')
-			return (0);
-	}
-	return (1);
-}
-
 static int	check_piece(char *piece)
 {
 	int i;
@@ -56,9 +46,9 @@ static int	check_piece(char *piece)
 	pound_count = 0;
 	connections = 0;
 	while (++i < 20)
-		if (!line_break_check(piece, i))
+		if (i % 5 == 4 && piece[i] != '\n')
 			return (0);
-		else
+		else if (i % 5 != 4)
 		{
 			if (piece[i] != '.' && piece[i] != '#')
 				return (0);
