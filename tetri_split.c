@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/05 14:45:54 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:52:08 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static char		*trim_tetri(char const *input)
 	while (++i < 21)
 		if (input[i] == '#')
 		{
+			coords = set_coords(coords, i);
 			tmp = MAX(tmp, i % 5);
 			dim = set_dims(dim, coords, i, tmp);
 		}
@@ -54,7 +55,6 @@ static char		*trim_tetri(char const *input)
 	i = -1;
 	while (++i < dim->y)
 	{
-		coords = set_coords(coords, i);
 		tmp = ((coords->y + i) * 5) + coords->x;
 		ft_strncat(tetri, input + tmp, dim->x);
 		ft_strncat(tetri, "\n", 1);
