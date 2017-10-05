@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 12:27:37 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/04 16:08:37 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/04 21:13:57 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ unsigned int     check_input(char *tetriminos)
     int c;
     int ct;
     int tc;
+    int cc;
 
+    cc = 0;
     ct = 0;
     tc = 0;
     i = 0;
@@ -30,6 +32,20 @@ unsigned int     check_input(char *tetriminos)
     {
         if (tetriminos[i] == '#')
         {
+            if(tetriminos[i+1] == '#')
+                cc++;
+            if(tetriminos[i-1] == '#')
+                cc++;
+            if(tetriminos[i+5] == '#' &&
+                ((tetriminos[i+1] != '\n' && tetriminos[i+2] != '\n') ||
+                (tetriminos[i+2] != '\n' && tetriminos[i+3] != '\n') ||
+                (tetriminos[i+3] != '\n' && tetriminos[i+4] != '\n')))
+                cc++;
+            if(tetriminos[i-5] == '#' &&
+                ((tetriminos[i-1] != '\n' && tetriminos[i-2] != '\n') ||
+                (tetriminos[i-2] != '\n' && tetriminos[i-3] != '\n') ||
+                (tetriminos[i-3] != '\n' && tetriminos[i-4] != '\n')))
+                cc++;
             tc++;
             c++;
         }
@@ -42,6 +58,9 @@ unsigned int     check_input(char *tetriminos)
         }
         else if (tetriminos[i] == '\n' && c == 0 && tc == 4)
         {
+            if(!(cc == 6 || cc == 8))
+                return (0);
+            cc = 0;
             ct = 0;
             tc = 0;
         }
@@ -51,6 +70,8 @@ unsigned int     check_input(char *tetriminos)
         if (tetriminos[i] == '\0' && ct != 4)
             return (0);
     }
+    if(!(cc == 6 || cc == 8))
+        return (0);
     if(tc != 4)
         return (0);
     return (1);

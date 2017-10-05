@@ -6,13 +6,14 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/04 14:32:54 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/04 18:15:23 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <stdlib.h>
 #include "fillit.h"
+#include <stdio.h>
 #include "libft.h"
 
 char	*trim_tetri(char const *input)
@@ -65,7 +66,7 @@ char **tetri_split(char const *input)
 	char	**split;
 	int		i;
 	int		size;
-	
+
 	size = (ft_strlen(input) / 21) + 2;
 	if (!(split = (char **)ft_memalloc(sizeof(char *) * size)))
 		return (NULL);
