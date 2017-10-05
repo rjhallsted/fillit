@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 14:18:34 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:44:45 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "fillit.h"
 
-int		loop_thru_candidates(char **map, size_t map_size, char **piece, char id)
+int			loop_candidates(char **map, size_t map_size, char **piece, char id)
 {
 	int 		i;
 	int			found;
@@ -27,7 +27,7 @@ int		loop_thru_candidates(char **map, size_t map_size, char **piece, char id)
 		return (0);
 	while (start_at && !found)
 	{
-		found = consider_candidate(map, map_size, piece, start_at, id);
+		found = consider(map, map_size, piece, start_at, id);
 		if (!found)
 		{
 			remove_piece(map, map_size, id);
@@ -42,20 +42,20 @@ int		loop_thru_candidates(char **map, size_t map_size, char **piece, char id)
 	return (found);
 }
 
-int 	consider_candidate(char **map, size_t map_size, char **piece, t_coords *coords, char id)
+int			consider(char **map, size_t map_size, char **piece, t_coords *coords, char id)
 {
 	set_piece(map, piece, coords, id);
 	if (accept(piece))
 		return (1);
-	return (loop_thru_candidates(map, map_size, piece + 1, id + 1));
+	return (loop_candidates(map, map_size, piece + 1, id + 1));
 }
 
-int		accept(char **piece)
+int			accept(char **piece)
 {
 	return (*(piece + 1) == NULL);
 }
 
-void	set_piece(char **map, char **piece, t_coords *coords, char id)
+void		set_piece(char **map, char **piece, t_coords *coords, char id)
 {
 	int			x;
 	int			y;
@@ -79,7 +79,7 @@ void	set_piece(char **map, char **piece, t_coords *coords, char id)
 	}
 }
 
-void	remove_piece(char **map, size_t map_size, char id)
+void		remove_piece(char **map, size_t map_size, char id)
 {
 	size_t i;
 
@@ -92,7 +92,7 @@ void	remove_piece(char **map, size_t map_size, char id)
 	}
 }
 
-t_coords *find_placement(char **map, size_t map_size, char **piece, size_t start_at)
+t_coords	*find_placement(char **map, size_t map_size, char **piece, size_t start_at)
 {
 	t_coords	*coords;
 	size_t		i;
@@ -113,7 +113,7 @@ t_coords *find_placement(char **map, size_t map_size, char **piece, size_t start
 	return (NULL);
 }
 
-int		can_place_here(char **map, size_t map_size, char **piece, t_coords *coords, t_coords *dim)
+int			can_place_here(char **map, size_t map_size, char **piece, t_coords *coords, t_coords *dim)
 {
 	int y;
 	int x;
@@ -126,7 +126,8 @@ int		can_place_here(char **map, size_t map_size, char **piece, t_coords *coords,
 	{
 		while (x < dim->x && coords->x + x < (int)map_size)
 		{
-			if (map[coords->y + y][coords->x + x] != '.' && (*piece)[(y * (dim->x + 1)) + x] == '#')
+			if (map[coords->y + y][coords->x + x] != '.' &&
+				(*piece)[(y * (dim->x + 1)) + x] == '#')
 				return (0);
 			x++;
 		}
