@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 14:29:49 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/04 21:12:04 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/05 12:02:16 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		main(int argc, char **argv)
 			ft_putstr("error\n");
 			return (2); //2 refers to a file error
 		}
-        if(!check_input(input))
+        if(!validate_input(input))
 		{
 			ft_putstr("error\n");
 			return (2); //2 refers to a file error

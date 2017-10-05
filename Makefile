@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/04 15:25:24 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/05 12:02:35 by rhallste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,14 @@ LIBLIST		=	ft_bzero				\
 				ft_putstr_fd			\
 				ft_strcpy				\
 				ft_strdup				\
+				ft_strsub				\
 				ft_strlen				\
 				ft_strncat				\
 				ft_strncpy				\
 				ft_strnew				\
 				ft_swap
 
-MAINLIST	=	check_input				\
+MAINLIST	=	validate_input			\
 				tetriminos_split		\
 				read_input
 
