@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 14:30:16 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:50:55 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-int					loop_thru_candidates(char **map, size_t map_size,
+int					loop_candidates(char **map, size_t map_size,
 						char **piece, char id);
-int					consider_candidate(char **map, size_t map_size,
+int					consider(char **map, size_t map_size,
 						char **piece, t_coords *coords, char id);
-int 				solution_finder(char	**piece);
+int					solution_finder(char **piece);
 int					accept(char **piece);
 void				set_piece(char **map, char **piece, t_coords *coords,
 						char id);

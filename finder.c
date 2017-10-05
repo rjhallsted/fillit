@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   finder.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 00:03:35 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 14:31:13 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:52:44 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include <stdio.h>
 
-t_coords	*find_dimensions(char const *shape)
+t_coords		*find_dimensions(char const *shape)
 {
 	t_coords	*coords;
 
@@ -43,7 +43,8 @@ static size_t	piece_count(char **piece)
 	return (i);
 }
 
-int solution_finder(char	**piece) {
+int				solution_finder(char **piece)
+{
 	int		solution_found;
 	size_t	map_size;
 	char	**map;
@@ -55,7 +56,7 @@ int solution_finder(char	**piece) {
 		map_size++;
 		if (!(map = make_map(map_size)))
 			return (1);
-		solution_found = loop_thru_candidates(map, map_size, piece, 'A');
+		solution_found = loop_candidates(map, map_size, piece, 'A');
 		if (!solution_found)
 			ft_free_2d_array((void ***)&map, map_size);
 	}
