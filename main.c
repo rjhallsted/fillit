@@ -6,15 +6,13 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 14:24:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 15:17:49 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 15:28:36 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 #include "fillit.h"
-
-#include <stdio.h>
 
 char		**make_map(size_t map_size)
 {

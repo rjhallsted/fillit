@@ -6,13 +6,12 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/05 15:04:26 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 15:28:42 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "fillit.h"
-#include <stdio.h>
 #include "libft.h"
 
 static t_coords	*set_dims(t_coords *dim, t_coords *coords, int i, int tmp)
