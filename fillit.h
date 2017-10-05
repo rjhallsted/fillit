@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 14:17:05 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:22:21 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int					loop_thru_candidates(char **map, size_t map_size,
 						char **piece, char id);
 int					consider_candidate(char **map, size_t map_size,
 						char **piece, t_coords *coords, char id);
+int 				solution_finder(char	**piece);
 int					accept(char **piece);
 void				set_piece(char **map, char **piece, t_coords *coords,
 						char id);

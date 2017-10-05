@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/05 13:46:00 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/05 14:24:35 by rhallste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ MAINLIST	=	validate_input			\
 
 MAIN		=	main					\
 				backtracking			\
-				list
+				finder
 TEST		=	test
 
 LIBSRCS		=	$(addsuffix .c, $(LIBLIST))
