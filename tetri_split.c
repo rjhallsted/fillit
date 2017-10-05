@@ -6,7 +6,7 @@
 /*   By: sjuery <sjuery@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:06 by sjuery            #+#    #+#             */
-/*   Updated: 2017/10/05 14:52:08 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 15:04:26 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,25 @@ static t_coords	*set_coords(t_coords *coords, int i)
 	coords->x = MIN(coords->x, i % 5);
 	coords->y = MIN(coords->y, i / 5);
 	return (coords);
+}
+
+static char		*build_piece(t_coords *coords, t_coords *dim,
+					char const *input)
+{
+	char	*tetri;
+	int		tmp;
+	int		i;
+
+	if (!(tetri = ft_strnew((dim->x * dim->y) + dim->y)))
+		return (NULL);
+	i = -1;
+	while (++i < dim->y)
+	{
+		tmp = ((coords->y + i) * 5) + coords->x;
+		ft_strncat(tetri, input + tmp, dim->x);
+		ft_strncat(tetri, "\n", 1);
+	}
+	return (tetri);
 }
 
 static char		*trim_tetri(char const *input)
@@ -50,15 +69,8 @@ static char		*trim_tetri(char const *input)
 			tmp = MAX(tmp, i % 5);
 			dim = set_dims(dim, coords, i, tmp);
 		}
-	if (!(tetri = ft_strnew((dim->x * dim->y) + dim->y)))
+	if (!(tetri = build_piece(coords, dim, input)))
 		return (NULL);
-	i = -1;
-	while (++i < dim->y)
-	{
-		tmp = ((coords->y + i) * 5) + coords->x;
-		ft_strncat(tetri, input + tmp, dim->x);
-		ft_strncat(tetri, "\n", 1);
-	}
 	free(coords);
 	free(dim);
 	return (tetri);
@@ -77,7 +89,7 @@ char			**tetri_split(char const *input)
 	while (*input && i < size - 1)
 	{
 		if (!(split[i++] = trim_tetri(input)))
-			return (NULL); //also free formers
+			return (NULL);
 		input += 21;
 	}
 	split[i] = NULL;
