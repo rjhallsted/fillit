@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/10/05 14:45:03 by rhallste         ###   ########.fr        #
+#    Updated: 2017/10/05 15:08:44 by rhallste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,29 +38,22 @@ LIBLIST		=	ft_bzero				\
 MAINLIST	=	validate_input			\
 				tetri_split				\
 				read_input				\
-				coords
-MAIN		=	main					\
+				coords					\
+				main					\
 				backtracking			\
 				finder					
-TEST		=	test
 
 LIBSRCS		=	$(addsuffix .c, $(LIBLIST))
 LIBOBJS		=	$(addsuffix .o, $(LIBLIST))
 
-MAINSRCS	=	$(addsuffix .c, $(MAINLIST) $(MAIN))
-MAINOBJS	=	$(addsuffix .o, $(MAINLIST) $(MAIN))
-
-TESTSRCS	=	$(addsuffix .c, $(MAINLIST) $(TEST))
-TESTOBJS	=	$(addsuffix .o, $(MAINLIST) $(TEST))
-
+MAINSRCS	=	$(addsuffix .c, $(MAINLIST))
+MAINOBJS	=	$(addsuffix .o, $(MAINLIST))
 
 all: $(NAME)
 
 $(LIBOBJS): $(LIBSRCS)
 
 $(MAINOBJS): $(MAINSRCS)
-
-$(TESTOBJS): $(TESTSRCS)
 
 $(LIBNAME): $(LIBOBJS)
 	ar rcs $(LIBNAME) $(LIBOBJS)
@@ -77,7 +70,3 @@ fclean: clean
 re: fclean all
 
 .SILENT: $(LIBOBJS) $(MAINOBJS)
-
-t: $(LIBNAME) $(TESTOBJS)
-	$(CC) $(CFLAGS) $(TESTOBJS) $(LIBNAME) -o t
-	./t $(TESTFILE) | cat -e
