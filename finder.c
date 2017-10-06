@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 00:03:35 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 17:44:40 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 19:09:17 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int				solution_finder(char **piece)
 	return (0);
 }
 
-t_coords		*find_placement(char *map, char **piece, t_coords *dim, size_t start_at)
+t_coords		*find_placement(char *map, char **piece, t_coords *dim,
+					size_t start_at)
 {
 	t_coords	*coords;
 	size_t		i;
@@ -84,7 +85,7 @@ t_coords		*find_placement(char *map, char **piece, t_coords *dim, size_t start_a
 	return (NULL);
 }
 
-int				can_place_here(char *map, char **piece, t_coords *coords,
+int				can_place_here(char *map, char **piece, t_coords *crds,
 					t_coords *dim)
 {
 	int y;
@@ -94,11 +95,11 @@ int				can_place_here(char *map, char **piece, t_coords *coords,
 	x = 0;
 	if (dim->x > (int)g_map_size || dim->y > (int)g_map_size)
 		return (0);
-	while (y < dim->y & coords->y + y < (int)g_map_size)
+	while (y < dim->y & crds->y + y < (int)g_map_size)
 	{
-		while (x < dim->x & coords->x + x < (int)g_map_size)
+		while (x < dim->x & crds->x + x < (int)g_map_size)
 		{
-			if ((map[(coords->y + y) * (g_map_size + 1) + (coords->x + x)]) != '.' &
+			if ((map[(crds->y + y) * (g_map_size + 1) + (crds->x + x)]) != '.' &
 				(*piece)[(y * (dim->x + 1)) + x] == '#')
 				return (0);
 			x++;

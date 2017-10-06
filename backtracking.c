@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 17:36:19 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 19:08:30 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,14 @@ int			loop_candidates(char *map, char **piece, char id)
 	while (start_at && !found)
 	{
 		found = consider(map, piece, start_at, id);
+		tmp = (start_at->y * g_map_size) + start_at->x + 1;
+		free(start_at);
 		if (!found)
 		{
 			remove_piece(map, id);
-			tmp = (start_at->y * g_map_size) + start_at->x + 1;
-			free(start_at);
 			if (!(start_at = find_placement(map, piece, dim, tmp)))
 				return (0);
 		}
-		else
-			free(start_at);
 	}
 	return (found);
 }
@@ -55,7 +53,7 @@ int			consider(char *map, char **piece, t_coords *coords, char id)
 	return (loop_candidates(map, piece + 1, id + 1));
 }
 
-void		set_piece(char *map, char **piece, t_coords *coords, char id)
+void		set_piece(char *map, char **piece, t_coords *crds, char id)
 {
 	int			x;
 	int			y;
@@ -69,7 +67,7 @@ void		set_piece(char *map, char **piece, t_coords *coords, char id)
 		while (x < dim->x)
 		{
 			if ((*piece)[(y * (dim->x + 1)) + x] == '#')
-				(map[(coords->y + y) * (g_map_size + 1) + (coords->x + x)]) = id;
+				(map[(crds->y + y) * (g_map_size + 1) + (crds->x + x)]) = id;
 			x++;
 		}
 		x = 0;
@@ -84,7 +82,7 @@ void		remove_piece(char *map, char id)
 	i = 0;
 	while (i < (g_map_size + 1) * g_map_size)
 	{
-		if(map[i] == id)
+		if (map[i] == id)
 			map[i] = '.';
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 14:24:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 19:01:06 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 19:04:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 char		*make_map(size_t map_size)
 {
 	char	*map;
-	size_t		i;
+	size_t	i;
 
 	if (!(map = (char *)ft_memalloc(sizeof(char) * (map_size + 1) * map_size)))
 		return (NULL);
@@ -25,7 +25,7 @@ char		*make_map(size_t map_size)
 	while (i < (map_size + 1) * map_size)
 	{
 		ft_memset(&map[i], '.', map_size);
-		i+= map_size;
+		i += map_size;
 		ft_memset(&map[i], '\n', 1);
 		i++;
 	}
