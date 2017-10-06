@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:42:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 15:27:05 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 17:08:16 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 extern		size_t g_map_size;
 
-int			loop_candidates(char **map, char **piece, char id)
+int			loop_candidates(char *map, char **piece, char id)
 {
 	int			i;
 	int			found;
@@ -44,7 +44,7 @@ int			loop_candidates(char **map, char **piece, char id)
 	return (found);
 }
 
-int			consider(char **map, char **piece, t_coords *coords, char id)
+int			consider(char *map, char **piece, t_coords *coords, char id)
 {
 	set_piece(map, piece, coords, id);
 	if (*(piece + 1) == NULL)
@@ -52,7 +52,7 @@ int			consider(char **map, char **piece, t_coords *coords, char id)
 	return (loop_candidates(map, piece + 1, id + 1));
 }
 
-void		set_piece(char **map, char **piece, t_coords *coords, char id)
+void		set_piece(char *map, char **piece, t_coords *coords, char id)
 {
 	int			x;
 	int			y;
@@ -67,7 +67,7 @@ void		set_piece(char **map, char **piece, t_coords *coords, char id)
 		{
 			if ((*piece)[(y * (dim->x + 1)) + x] == '#')
 			{
-				map[coords->y + y][coords->x + x] = id;
+				(map[(coords->y + y) * (g_map_size + 1) + (coords->x + x)]) = id;
 			}
 			x++;
 		}
@@ -76,15 +76,15 @@ void		set_piece(char **map, char **piece, t_coords *coords, char id)
 	}
 }
 
-void		remove_piece(char **map, char id)
+void		remove_piece(char *map, char id)
 {
 	size_t i;
 
 	i = 0;
-	while (i < g_map_size * g_map_size)
+	while (i < (g_map_size + 1) * g_map_size)
 	{
-		if (map[i / g_map_size][i % g_map_size] == id)
-			map[i / g_map_size][i % g_map_size] = '.';
+		if(map[i] == id)
+			map[i] = '.';
 		i++;
 	}
 }
