@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 17:35:59 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 17:44:55 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_coords			*find_dimensions(char const *shape);
 int					can_place_here(char *map, char **piece, t_coords *coords,
 						t_coords *dim);
 char				*make_map(size_t map_size);
-void				print_map(char *map);
 void				free_map(char *map, size_t map_size);
 char				*read_input(char const *file);
 int					validate_input(char *tetriminos);

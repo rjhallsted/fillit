@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 14:24:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 17:08:22 by sjuery           ###   ########.fr       */
+/*   Updated: 2017/10/05 17:44:25 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ char		*make_map(size_t map_size)
 		i++;
 	}
 	return (map);
-}
-
-void		print_map(char *map)
-{
-	ft_putstr(map);
-	ft_putchar('\n');
 }
 
 /*
