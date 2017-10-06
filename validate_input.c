@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 11:43:30 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 14:14:26 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 18:42:31 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ static int	count_connections(char *piece, int index)
 static int	check_piece(char *piece)
 {
 	int i;
-	int pound_count;
 	int connections;
 
 	if (!piece)
 		return (0);
 	i = -1;
-	pound_count = 0;
 	connections = 0;
 	while (++i < 20)
 		if (i % 5 == 4 && piece[i] != '\n')
@@ -53,12 +51,9 @@ static int	check_piece(char *piece)
 			if (piece[i] != '.' && piece[i] != '#')
 				return (0);
 			if (piece[i] == '#')
-			{
-				pound_count++;
 				connections += count_connections(piece, i);
-			}
 		}
-	if (pound_count != 4 || (connections != 6 && connections != 8))
+	if (connections != 6 && connections != 8)
 		return (0);
 	return (1);
 }
