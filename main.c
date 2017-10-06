@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 14:24:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 17:44:25 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 19:01:06 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ int			main(int argc, char **argv)
 			return (0);
 	}
 	else
-		ft_putstr("error\n");
+		ft_putstr("usage: ./fillit [file]\n");
 	return (0);
 }
