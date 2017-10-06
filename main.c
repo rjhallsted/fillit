@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
+/*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 14:24:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 15:28:36 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 17:08:22 by sjuery           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,28 @@
 #include "libft.h"
 #include "fillit.h"
 
-char		**make_map(size_t map_size)
+char		*make_map(size_t map_size)
 {
-	char	**map;
-	size_t	i;
+	char	*map;
+	size_t		i;
 
-	if (!(map = ft_memalloc(sizeof(char *) * map_size)))
+	if (!(map = (char *)ft_memalloc(sizeof(char) * (map_size + 1) * map_size)))
 		return (NULL);
 	i = 0;
-	while (i < map_size)
+	while (i < (map_size + 1) * map_size)
 	{
-		if (!(map[i] = ft_strnew(map_size)))
-		{
-			ft_free_2d_array((void ***)&map, i);
-			return (NULL);
-		}
-		ft_memset(map[i], '.', map_size);
+		ft_memset(&map[i], '.', map_size);
+		i+= map_size;
+		ft_memset(&map[i], '\n', 1);
 		i++;
 	}
 	return (map);
 }
 
-void		print_map(char **map, size_t map_size)
+void		print_map(char *map)
 {
-	size_t i;
-
-	i = 0;
-	while (i < map_size)
-	{
-		ft_putstr(map[i]);
-		ft_putchar('\n');
-		i++;
-	}
+	ft_putstr(map);
+	ft_putchar('\n');
 }
 
 /*
@@ -71,7 +61,7 @@ int			main(int argc, char **argv)
 		if (!(piece = tetri_split(input)))
 			return (error(1));
 		if (solution_finder(piece))
-			return (1);
+			return (0);
 	}
 	else
 		ft_putstr("error\n");

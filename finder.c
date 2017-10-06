@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 00:03:35 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 16:20:00 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/05 17:34:59 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static size_t	piece_count(char **piece)
 int				solution_finder(char **piece)
 {
 	int		solution_found;
-	char	**map;
+	char	*map;
 
 	solution_found = 0;
 	g_map_size = 1;
@@ -57,11 +57,11 @@ int				solution_finder(char **piece)
 			return (1);
 		solution_found = loop_candidates(map, piece, 'A');
 		if (!solution_found)
-			ft_free_2d_array((void ***)&map, g_map_size);
+			free(map);
 	}
 	ft_free_2d_array((void ***)&piece, piece_count(piece));
-	print_map(map, g_map_size);
-	ft_free_2d_array((void ***)&map, g_map_size);
+	print_map(map);
+	free(map);
 	return (0);
 }
 
@@ -84,7 +84,7 @@ t_coords		*find_placement(char **map, char **piece, t_coords *dim, size_t start_
 	return (NULL);
 }
 
-int				can_place_here(char **map, char **piece, t_coords *coords,
+int				can_place_here(char *map, char **piece, t_coords *coords,
 					t_coords *dim)
 {
 	int y;
@@ -94,11 +94,11 @@ int				can_place_here(char **map, char **piece, t_coords *coords,
 	x = 0;
 	if (dim->x > (int)g_map_size || dim->y > (int)g_map_size)
 		return (0);
-	while (y < dim->y && coords->y + y < (int)g_map_size)
+	while (y < dim->y & coords->y + y < (int)g_map_size)
 	{
-		while (x < dim->x && coords->x + x < (int)g_map_size)
+		while (x < dim->x & coords->x + x < (int)g_map_size)
 		{
-			if (map[coords->y + y][coords->x + x] != '.' &&
+			if ((map[(coords->y + y) * (g_map_size + 1) + (coords->x + x)]) != '.' &
 				(*piece)[(y * (dim->x + 1)) + x] == '#')
 				return (0);
 			x++;
