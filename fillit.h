@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:36:45 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 17:44:55 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/12 12:19:36 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,6 @@ typedef struct		s_coords
 	int				x;
 	int				y;
 }					t_coords;
-
-typedef struct		s_list
-{
-	char			*shape;
-	char			id;
-	t_coords		*dim;
-	struct s_list	*next;
-}					t_list;
 
 size_t				g_map_size;
 
