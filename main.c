@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 14:24:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/07 14:17:32 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/10/12 12:22:30 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ int				can_place_here(char *map, char **piece, t_coords *crds,
 	{
 		while (x < dim->x && crds->x + x < (int)g_map_size)
 		{
-			if ((map[(crds->y + y) * (g_map_size + 1) + (crds->x + x)]) != '.' &&
-				(*piece)[(y * (dim->x + 1)) + x] == '#')
+			if ((map[(crds->y + y) * (g_map_size + 1) + (crds->x + x)]) != '.'
+					&& (*piece)[(y * (dim->x + 1)) + x] == '#')
 				return (0);
 			x++;
 		}
